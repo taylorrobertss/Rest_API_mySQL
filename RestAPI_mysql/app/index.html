@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<!-- 
+    AJAX - API - Database 
+    CS230 Assignment 04
+    Browser: Microsoft edge 
+    OS: Windows
+    
+-->
+
+<head>
+    <title>AJAX - API - Database Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Use Bootstrap for the form styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Use W3.CSS for the Modal -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="server.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Extra Styles for the Bootstrap Forms */
+        
+        h1 {
+            font: 30px Verdana;
+            text-align: center;
+        }
+        
+        h2 {
+            font: 20px Verdana;
+            text-align: center;
+        }
+        
+        legend {
+            padding: 10px;
+            font: 30px Verdana
+        }
+    </style>
+</head>
+
+<body>
+    <h1>AJAX - API - Database </h1>
+    <h2>CS230 Assignment 04 </h2>
+
+    <div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <form id="getUserDatabaseForm" class="form-horizontal">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Show User Database</legend>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="showUserDatabase">User Database</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="showUserDatabase" name="showUserDatabase">Retrieved Database displayed here!</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+                            <div class="col-md-4">
+                                <input type="submit" value="Get User Database" class="btn btn-primary">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+
+
+
+            // handle "Get User Database" submit button click
+            $('#getUserDatabaseForm').submit(function(e) {
+                alert("TESTING");
+                $.ajax({
+                        type: 'GET',
+                        url: 'http://localhost:3000/dogBreeds'
+                    })
+                    .done(function(data) {
+                        // display the database in the textarea and trigger an input change event
+                        $('#showUserDatabase').val(JSON.stringify(data, null, 2)).trigger('input');
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                // meand that clicked submit button will not take the browser to a new URL.
+            });
+
+
+            // some fun jQuery here that is not necessary for operation
+            // this sets an event handler to resize the textarea after 
+            // a change event is triggered the call is triggered earlier
+            // after the content received from the API is written to the
+            // textarea it resizes to the size of the contained text
+            // just a vanity addition really!
+
+            $("#showUserDatabase").on("input", function() {
+                this.style.height = (this.scrollHeight) + "px;overflow-y:hidden;";
+                this.style.height = "auto";
+                this.style.height = (this.scrollHeight) + "px";
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
