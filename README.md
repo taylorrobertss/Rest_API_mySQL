@@ -43,18 +43,13 @@ This project implements a REST API. It uses a html form to conduct CRUD activiti
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-![GUI](https://user-images.githubusercontent.com/56134516/121663733-63f4b080-caaf-11eb-8d6d-70b348359938.PNG)
-![Create_Project](https://user-images.githubusercontent.com/56134516/121663763-69ea9180-caaf-11eb-9ee1-3f9a8cb092db.PNG)
-![Create_User_Story](https://user-images.githubusercontent.com/56134516/121663778-6eaf4580-caaf-11eb-9566-c2b958f82011.PNG)
-
-
-
+1. Start the server using node server.js
+2. Load the webpage in your browser at http:localhost:3000
+3. Create, retrieve, update and delete data from the database using the form
 
 <!-- ROADMAP -->
 ## Roadmap
-
-
+Retrieving data is already implemented.
 
 
 <!-- CONTRIBUTING -->
